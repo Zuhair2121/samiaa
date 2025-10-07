@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Happy Birthday Samia! 💖</title>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Comic+Neue:wght@400;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;}
+  body, html{
+    width:100%; height:100%;
+    margin:0; font-family:'Comic Neue', Arial, sans-serif;
+    overflow-x:hidden;
+    background:linear-gradient(135deg, #ffe6f0, #ffd9e8);
+    scroll-behavior: smooth;
+  }
+
+  /* INTRO */
+  #intro{
+    position:fixed;
+    top:0; left:0; width:100%; height:100%;
+    display:flex; flex-direction:column; justify-content:center; align-items:center;
+    background: linear-gradient(-45deg, #ff69b4, #ff1493, #ff6b9d, #ff0080);
+    background-size: 400% 400%;
+    animation: gradientShift 12s ease infinite;
+    z-index:9999;
+    overflow: hidden;
+  }
+
+  @keyframes gradientShift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  #intro img{
+    width:200px;
+    animation:bounceIn 1.2s ease-out forwards 0.2s;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+  }
+  #intro h1{
+    font-family:'Pacifico', cursive; 
+    color:#fff; 
+    font-size:2.8rem;
+    margin:20px 0; 
+    text-align:center;
+    opacity:0; 
+    animation:fadeIn 1s ease-out forwards 0.5s;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+  }
+  #intro p{
+    color:#fff; 
+    font-size:1.1rem; 
+    margin-top:10px; 
+    text-align:center;
+    opacity:0; 
+    animation:fadeIn 1s ease-out forwards 1.2s;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+    font-weight: bold;
+  }
+
+  .password-container {
+    margin-top: 25px;
+    text-align: center;
+    opacity: 0;
+    animation: fadeIn 1s ease-out forwards 1.8s;
+  }
+
+  .password-boxes {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 15px;
+  }
+
+  .password-box {
+    width: 50px;
+    height: 60px;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #e91e63;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    transition: all 0.3s ease;
+  }
+
+  .password-box.active {
+    border-color: #fff;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+    transform: scale(1.05);
+  }
+
+  .password-box.filled {
+    color: #e91e63;
+    animation: pulse 0.5s ease;
+  }
+
+  .password-input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .password-hint {
+    font-size: 1rem;
+    color: #fff;
+    margin-top: 12px;
+    font-weight: bold;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 8px 15px;
+    border-radius: 10px;
+    border: 1px dashed rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(5px);
+  }
+
+  .password-instruction {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-top: 6px;
+    font-weight: bold;
+  }
+
+  .error-message {
+    color: #ffeb3b;
+    font-weight: bold;
+    margin-top: 12px;
+    min-height: 20px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    font-style: italic;
+  }
+
+  /* TRANSITION SCREEN */
+  #transitionScreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(-45deg, #ff69b4, #ff1493, #ff6b9d, #ff0080);
+    background-size: 400% 400%;
+    z-index: 10000;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    animation: gradientShift 12s ease infinite;
+  }
+
+  #birthdayText {
+    font-family: 'Pacifico', cursive;
+    color: white;
+    font-size: 3.5rem;
+    text-align: center;
+    text-shadow: 3px 3px 10px rgba(0,0,0,0.4);
+    opacity: 0;
+    transform: scale(0.8);
+  }
+
+  @keyframes zoomInText {
+    0% {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    70% {
+      opacity: 1;
+      transform: scale(1.1);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+  }
+
+  @keyframes fadeOutElements {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(-15px);
+    }
+  }
+
+  @keyframes bounceIn{
+    0% { transform: scale(0.8); opacity:0; }
+    60% { transform: scale(1.05); opacity:1; }
+    80% { transform: scale(0.98); }
+    100% { transform: scale(1); }
+  }
+  @keyframes fadeIn{
+    from{ opacity:0; transform:translateY(10px);}
+    to{ opacity:1; transform:translateY(0);}
+  }
+
+  /* MAIN BDAY PAGE */
+  main{
+    display:none; 
+    padding:24px; 
+    text-align:center; 
+    position:relative;
+    overflow-y: auto;
+    min-height: 100vh;
+  }
+
+  h1{
+    font-family: 'Pacifico', cursive;
+    font-size:2.4rem;
+    margin:20px 0 15px;
+    color:#e91e63;
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+  }
+  h1 img{
+    height:6.5rem;
+    vertical-align:middle;
+    margin-left:8px;
+    animation: float 3s ease-in-out infinite;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
+  }
+  @keyframes float {
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-8px);}
+  }
+
+  p.lead{ 
+    font-size:1.05rem; 
+    max-width:700px; 
+    margin:0 auto 24px; 
+    color:#555; 
+    line-height:1.6; 
+    opacity: 0;
+    transition: opacity 0.8s ease;
+  }
+
+  /* LETTER VAULT */
+  .vault{ 
+    background:#fff0f6; 
+    max-width:900px; 
+    margin:24px auto; 
+    padding:22px; 
+    border-radius:18px; 
+    border: 3px dashed #ff69b4; 
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1); 
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .vault h2{ margin:0 0 12px; font-size:1.4rem; color:#d81b60; }
+  .vault p{ margin:0 0 16px; color:#555; }
+  .buttons{ display:flex; justify-content:center; align-items:center; gap:12px; margin:12px 0 16px; flex-wrap:wrap; }
+  .buttons button{ 
+    display:flex; 
+    align-items:center; 
+    justify-content:center; 
+    width:58px; 
+    height:58px; 
+    border-radius:50%; 
+    border:2px solid #ff69b4; 
+    font-size:24px; 
+    cursor:pointer; 
+    transition: all 0.3s ease; 
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
+    color:#fff; 
+  }
+  .buttons button:hover{ 
+    transform: translateY(-3px) scale(1.05); 
+    background:#ff85c1; 
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+  }
+  .btn1{ background:#ffb6c1; } .btn2{ background:#ff69b4; } .btn3{ background:#d05ce3; } .btn4{ background:#c891ed; }
+  .letter{ 
+    display:none; 
+    margin:16px auto 0; 
+    padding:18px; 
+    background:#fff0f6; 
+    border-radius:14px; 
+    border:2px solid #ff69b4; 
+    max-width:650px; 
+    text-align:left; 
+    font-style:italic; 
+    color:#222; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08); 
+    animation: slideUp 0.5s ease;
+  }
+  
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .letter.show{ display:block; animation: fadeIn 0.4s ease both; }
+
+  /* GALLERY */
+  .gallery{ 
+    margin-top:20px; 
+    padding-top:8px; 
+    opacity: 0; 
+    transform: translateY(15px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .gallery h3{ margin-bottom:12px; color:#d81b60; font-size:1.3rem; }
+  .grid{ 
+    display:grid; 
+    grid-template-columns:repeat(2,1fr); 
+    gap:12px; 
+    justify-items:center; 
+    align-items:center; 
+    max-width:900px; 
+    margin:0 auto 30px; 
+  }
+  .grid img{ 
+    width:100%; 
+    max-width:200px; 
+    aspect-ratio:4/3; 
+    object-fit:cover; 
+    border-radius:12px; 
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1); 
+    border:2px solid #ff69b4; 
+    cursor:pointer; 
+    transition: all 0.3s ease; 
+  }
+  .grid img:hover{ 
+    transform: scale(1.05); 
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  }
+  .lightbox-overlay{ 
+    position: fixed; 
+    top:0; 
+    left:0; 
+    width:100%; 
+    height:100%; 
+    background: rgba(0,0,0,0.92); 
+    display: none; 
+    justify-content: center; 
+    align-items: center; 
+    z-index: 9999; 
+    cursor: zoom-out; 
+    animation: fadeIn 0.3s ease;
+  }
+  .lightbox-overlay img{ 
+    max-width: 85%; 
+    max-height: 85%; 
+    border-radius:12px; 
+    box-shadow: 0 15px 40px rgba(0,0,0,0.5); 
+    animation: zoomIn 0.3s ease;
+  }
+  
+  @keyframes zoomIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+
+  /* 101 REASONS - FIXED LEFT ALIGNMENT */
+  .reasons-section{ 
+    background:#fff0f6; 
+    max-width:900px; 
+    margin:24px auto; 
+    padding:22px; 
+    border-radius:18px; 
+    border:3px dashed #ff69b4; 
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1); 
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reasons-section h2{
+    text-align:center; 
+    color:#d81b60; 
+    font-size:1.6rem; 
+    margin-bottom:15px;
+  }
+  .reasons-list{ 
+    max-height:350px; 
+    overflow-y:auto; 
+    padding-right:10px; 
+  }
+  .reasons-list ol{ 
+    padding-left:18px; 
+    margin:0; 
+    column-count:2; 
+    column-gap:20px; 
+    text-align: left;
+  }
+  .reasons-list li{ 
+    margin-bottom:8px; 
+    line-height:1.5; 
+    font-size:0.95rem;
+    text-align: left;
+    padding: 4px 0;
+    transition: color 0.2s ease;
+  }
+  
+  .reasons-list li:hover {
+    color: #d81b60;
+  }
+  
+  /* CHAT SIMULATOR */
+  #chat-simulator {
+    background:#fff0f6; 
+    max-width:900px; 
+    margin:24px auto; 
+    padding:22px; 
+    border-radius:18px; 
+    border:3px dashed #ff69b4; 
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1); 
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  #chat-simulator h2 {
+    text-align:center; 
+    color:#d81b60; 
+    font-size:1.6rem; 
+    margin-bottom:15px;
+  }
+  
+  #chat-window {
+    max-width:400px; 
+    margin:20px auto; 
+    border:2px solid #ff7eb9; 
+    border-radius:15px; 
+    background-color:white; 
+    padding:15px; 
+    box-shadow:0 0 15px rgba(255, 126, 185, 0.3); 
+    position:relative;
+  }
+  
+  .chat-instruction {
+    text-align:center; 
+    color:gray; 
+    font-size:12px; 
+    margin-bottom: 10px;
+  }
+  
+  #chat-messages {
+    height:350px; 
+    overflow-y:auto; 
+    display:flex; 
+    flex-direction:column; 
+    gap:10px;
+    padding: 10px;
+  }
+  
+  .message {
+    margin-bottom: 20px;
+    position: relative;
+    padding: 10px 15px;
+    max-width: 70%;
+    position: relative;
+    text-align: left;
+    animation: messageSlide 0.3s ease;
+  }
+  
+  @keyframes messageSlide {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .message.sent {
+    align-self: flex-end;
+    background-color: #f2f2f2;
+    color: black;
+    border-radius: 15px 15px 0 15px;
+    text-align: right;
+  }
+  
+  .message.received {
+    align-self: flex-start;
+    background-color: #ff7eb9;
+    color: white;
+    border-radius: 15px 15px 15px 0;
+    text-align: left;
+  }
+  
+  .heart {
+    position: absolute;
+    bottom: -10px;
+    font-size: 18px;
+    opacity: 0;
+    animation: fadePop 0.3s ease forwards;
+  }
+  
+  .message.sent .heart {
+    right: 5px;
+  }
+  
+  .message.received .heart {
+    left: 5px;
+  }
+  
+  @keyframes fadePop {
+    0% { opacity: 0; transform: scale(0.5); }
+    60% { opacity: 1; transform: scale(1.3); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+  
+  #typing-indicator {
+    display:none; 
+    position:absolute; 
+    bottom:70px; 
+    left:20px; 
+    font-size:13px; 
+    color:gray;
+    animation: pulse 1.5s infinite;
+  }
+  
+  .chat-input-container {
+    display:flex; 
+    margin-top:10px;
+  }
+  
+  /* SPECIAL MESSAGE */
+  .special-message{
+    background: linear-gradient(135deg, #ff8193, #ff1493);
+    max-width:900px;
+    margin:24px auto;
+    padding:22px;
+    border-radius:18px;
+    border:3px dashed #ff69b4;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .special-message h2{
+    font-family:'Pacifico', cursive;
+    font-size:1.6rem;
+    color:#fdfff3;
+    margin-bottom:15px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  }
+  .special-message p{
+    font-size:1.05rem;
+    line-height:1.6;
+    color:#fff;
+    text-align: left;
+  }
+
+  @media (min-width:768px){ 
+    .grid{ grid-template-columns:repeat(4,1fr); } 
+    h1{ font-size:2.8rem; } 
+    h1 img{ height:7.5rem; } 
+    .reasons-list ol{ column-count:3; } 
+  }
+
+  /* SCROLLBAR STYLING */
+  .reasons-list::-webkit-scrollbar,
+  #chat-messages::-webkit-scrollbar {
+    width: 8px;
+  }
+  .reasons-list::-webkit-scrollbar-track,
+  #chat-messages::-webkit-scrollbar-track {
+    background: rgba(255, 182, 193, 0.3);
+    border-radius: 10px;
+  }
+  .reasons-list::-webkit-scrollbar-thumb,
+  #chat-messages::-webkit-scrollbar-thumb {
+    background: #ff69b4;
+    border-radius: 10px;
+  }
+  .reasons-list::-webkit-scrollbar-thumb:hover,
+  #chat-messages::-webkit-scrollbar-thumb:hover {
+    background: #ff1493;
+  }
+  
+  /* FLOATING HEARTS BACKGROUND */
+  .floating-hearts {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+  }
+  
+  .heart-bg {
+    position: absolute;
+    color: rgba(255, 105, 180, 0.1);
+    font-size: 20px;
+    animation: floatHearts 15s infinite linear;
+  }
+  
+  @keyframes floatHearts {
+    0% {
+      transform: translateY(100vh) rotate(0deg);
+      opacity: 0;
+    }
+    10% {
+      opacity: 0.7;
+    }
+    90% {
+      opacity: 0.7;
+    }
+    100% {
+      transform: translateY(-100px) rotate(360deg);
+      opacity: 0;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- FLOATING HEARTS BACKGROUND -->
+<div class="floating-hearts" id="floatingHearts"></div>
+
+<!-- INTRO -->
+<div id="intro">
+  <img src="https://uploads.onecompiler.io/43yezwep6/43yexzdts/red-rose-bouquet-3d-icon-png-download-8363697.webp" alt="Bouquet">
+  <h1>Happy Birthday, darling! 💗✨</h1>
+  <p>Enter the secret code to unlock your surprise...</p>
+  
+  <div class="password-container">
+    <div class="password-boxes">
+      <div class="password-box" id="box1">_</div>
+      <div class="password-box" id="box2">_</div>
+      <div class="password-box" id="box3">_</div>
+      <div class="password-box" id="box4">_</div>
+    </div>
+    <input type="text" class="password-input" id="passwordInput" maxlength="4">
+    
+    <div class="password-hint">Hint: 143.24. _ _ _ _</div>
+    <div class="password-instruction">Enter 4-digit code (numbers only)</div>
+    <div class="error-message" id="errorMessage"></div>
+  </div>
+</div>
+
+<!-- TRANSITION SCREEN -->
+<div id="transitionScreen">
+  <div id="birthdayText">Happy Birthday Samia</div>
+</div>
+
+<!-- MAIN BDAY CONTENT -->
+<main id="birthdayPage">
+  <header>
+    <h1>
+      Happy Birthday, Samia
+      <img src="https://uploads.onecompiler.io/43yezwep6/43yexzdts/NicePng_hello-kitty-png_45335.png" alt="Hello Kitty">
+    </h1>
+    <p class="lead">
+      To the most amazing person in my life, Samia, I love your name. You make my world brighter every day.
+      On your birthday, I just want to remind you how much I love you, how grateful I am
+      to have you, and how excited I am for all the memories we'll keep creating together.
+      You're the biggest gift to the world and to me 💗
+    </p>
+  </header>
+
+  <!-- LETTER VAULT -->
+  <section class="vault">
+    <h2>💌 Letter Vault</h2>
+    <p>Click any envelope to read that letter. Only one open at a time.</p>
+    <div class="buttons">
+      <button class="btn1" onclick="showLetter(1)">💌</button>
+      <button class="btn2" onclick="showLetter(2)">💌</button>
+      <button class="btn3" onclick="showLetter(3)">💌</button>
+      <button class="btn4" onclick="showLetter(4)">💌</button>
+    </div>
+
+    <div id="letter1" class="letter"><strong>My love,</strong> every day with you feels like a dream. You're my sunshine on cloudy days and the reason I smile without a reason. 💕</div>
+    <div id="letter2" class="letter"><strong>Samia,</strong> you're the most beautiful person inside and out. I promise to always cherish, protect, and adore you forever. 🌸</div>
+    <div id="letter3" class="letter"><strong>You make my heart race,</strong> and my soul calm at the same time. Loving you is the easiest, most natural thing I've ever done. 🌹</div>
+    <div id="letter4" class="letter"><strong>Happy Birthday, my princess,</strong> no gift in the world could match the gift you are to me. I love you endlessly. 🎀</div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery">
+    <h3>📸 Our Gallery 📸</h3>
+    <div class="grid">
+      <img src="https://uploads.onecompiler.io/43yezwep6/43yexzdts/Untitled-134343dfgdfsdad.png" alt="Memory 1" class="clickable-photo">
+      <img src="https://uploads.onecompiler.io/43yezwep6/43yexzdts/ddfdfd.png" alt="Memory 2" class="clickable-photo">
+      <img src="https://uploads.onecompiler.io/43yezwep6/43yexzdts/462535563_1239547680633326_3134956145129677402_nasddfdsfs.png" alt="Memory 3" class="clickable-photo">
+      <img src="https://uploads.onecompiler.io/43yezwep6/43yexzdts/20241205_114807.jpg" alt="Memory 4" class="clickable-photo">
+      <img src="https://uploads.onecompiler.io/43yezwep6/43yexzdts/476433663_9173647679415977_5192629133570729215_nzxczcxxcvxcvzsxv.png" alt="Memory 7" class="clickable-photo">
+      <img src="https://uploads.onecompiler.io/43yezwep6/43yexzdts/480603232_963150139289525_6289876272625172259_n%20(1).jpg" alt="Memory 8" class="clickable-photo">
+      <img src="https://uploads.onecompiler.io/43yezwep6/43yexzdts/491005006_1454722432574977_2516796030569773804_n.jpg" alt="Memory 11" class="clickable-photo">
+      <img src="https://uploads.onecompiler.io/43yezwep6/43yr8hgh2/554132481_24782241718095393_7823211298939963952_n.jpg" alt="Memory 12" class="clickable-photo">
+    </div>
+  </section>
+
+  <div class="lightbox-overlay" id="lightbox">
+    <img src="" alt="Expanded Photo" id="lightbox-img">
+  </div>
+
+  <!-- 101 REASONS -->
+  <section class="reasons-section">
+    <h2>💖 100 Reasons I Love You 💖</h2>
+    <div class="reasons-list">
+      <ol>
+        <li>You are kind</li>
+        <li>You are patient</li>
+        <li>You are forgiving</li>
+        <li>You are stubborn</li>
+        <li>You are caring</li>
+        <li>You are honest</li>
+        <li>You are supportive</li>
+        <li>You make me laugh</li>
+        <li>You are humble</li>
+        <li>You are amazing</li>
+        <li>You are beautiful</li>
+        <li>You are gorgeous</li>
+        <li>You are cute</li>
+        <li>You are pretty</li>
+        <li>You are hot</li>
+        <li>You are smexy</li>
+        <li>You make me feel safe</li>
+        <li>You feel like home</li>
+        <li>You have a pure heart</li>
+        <li>You bite your lip when thinking</li>
+        <li>The way you eat</li>
+        <li>Your handwriting is pretty</li>
+        <li>You are smart (but no bren)</li>
+        <li>You are dumb</li>
+        <li>You are shy</li>
+        <li>You are mine</li>
+        <li>You're curious</li>
+        <li>You're freaky</li>
+        <li>You're ambitious</li>
+        <li>You have good taste in music</li>
+        <li>You match my freak</li>
+        <li>You watch anime</li>
+        <li>You like cats</li>
+        <li>You like birbs</li>
+        <li>You watch movies with me</li>
+        <li>You recommend good movies</li>
+        <li>You say "okie"</li>
+        <li>You call me baby</li>
+        <li>You have a beautiful name</li>
+        <li>You spam emojis</li>
+        <li>You are egoist</li>
+        <li>You like my hobbies</li>
+        <li>You look pretty when you dance</li>
+        <li>You have a heavenly voice</li>
+        <li>Your smile</li>
+        <li>Your judging face</li>
+        <li>Your laugh</li>
+        <li>You wear glasses</li>
+        <li>You are my cutie</li>
+        <li>You are my good girl</li>
+        <li>You beat me</li>
+        <li>You scold me</li>
+        <li>You help me be better</li>
+        <li>You walk home with me</li>
+        <li>You send me memes</li>
+        <li>You feed me cookies</li>
+        <li>You give me gifts</li>
+        <li>You are my biggest gift</li>
+        <li>You squeeze my biceps</li>
+        <li>You're my cat</li>
+        <li>You secretly check if I'm looking at you</li>
+        <li>You can play goodminton</li>
+        <li>You play Minecraft with me</li>
+        <li>You love getting headpats</li>
+        <li>You love getting forehead kisses</li>
+        <li>You were nice to me</li>
+        <li>You hold my hand</li>
+        <li>You kiss me</li>
+        <li>You'd let me 69 you 😏</li>
+        <li>You give me headpats</li>
+        <li>You are shy to say my name</li>
+        <li>You are helpful</li>
+        <li>You're my baby</li>
+        <li>You are funny</li>
+        <li>You are angry</li>
+        <li>You are my study buddy</li>
+        <li>You tease me</li>
+        <li>You let me flirt with you</li>
+        <li>You're jealous</li>
+        <li>You're possessive</li>
+        <li>You're eepy</li>
+        <li>You let me talk freaky</li>
+        <li>You check if I'm okay</li>
+        <li>You motivate me</li>
+        <li>You cheer me up</li>
+        <li>You make me feel loved</li>
+        <li>You're perfect</li>
+        <li>I dream of a future with you</li>
+        <li>You cooked pancakes for me</li>
+        <li>You bought me stoberi drink</li>
+        <li>You are my best fren</li>
+        <li>You are my girlfriend</li>
+        <li>You are my motivation</li>
+        <li>You are my calm</li>
+        <li>You are my joy</li>
+        <li>You are my bunny 🐇</li>
+        <li>You are my sunshine</li>
+        <li>You are everything</li>
+        <li>You are my life</li>
+        <li>Simply, you are mine</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- CHAT SIMULATOR -->
+  <section id="chat-simulator">
+    <h2>Chat with Your Boyfie</h2>
+    <div id="chat-window">
+      <p class="chat-instruction">Double tap to like ❤️</p>
+      
+      <div id="chat-messages">
+        <div class="message received" ondblclick="toggleHeart(this)">
+          Hii babyyy :D
+        </div>
+      </div>
+
+      <div id="typing-indicator">Your boyfie is typing...</div>
+      
+      <div class="chat-input-container">
+        <input id="user-input" type="text" placeholder="Type here..." style="flex:1; padding:10px; border:1px solid #ff7eb9; border-radius:15px; outline:none;">
+        <button onclick="sendMessage()" style="margin-left:8px; background-color:#ff7eb9; color:white; border:none; border-radius:15px; padding:10px 15px; cursor:pointer;">Send</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPECIAL MESSAGE -->
+  <section class="special-message">
+    <h2>💗 Special message from your boyfie 💗</h2>
+    <p>
+      HAPPY BIRTHDAY TO THE LOVE OF MY LIFE!!! 
+(⁠づ⁠｡⁠◕⁠‿⁠‿⁠◕⁠｡⁠)⁠づ💗🎀💖💞💋✨
+Happy birthday my sweet, beautiful, adorable, pretty, kind, smart, cute little girl ><
+I love you sooo muchhhh babyyyyy (⁠≧⁠▽⁠≦⁠)✨✨✨
+It's a really special day for you baby, for me too. The love of my life was born on this day, what a beautiful day! First of all, I'm forever grateful to have you in my life honey. You're my little hunny bunny 🐇 (⁠◕⁠ᴗ⁠◕⁠✿⁠)🎀✨ You make my life better just by existing in it. You brought colors to my black and white world, you brought love to my mind that thought I'm unworthy of love. You're such a sweet and adorable girlll 😭😭😭😭✨ I love you soo muchhhh babyyyy ><  I love to call you my girlfriend baby, you are a dream come true. You fell straight out of heaven for me. You're not just my girlfriend, you are my heart, my life, you are my everything. Ever since we met, 21 January 2024, when we crossed the same stationary shop without knowing we'd mean so muchhh to each other. I'm glad you noticed me and felt like i need to be cared. I love it when you care about me. You're so caring baby. Only you cared about me like this and i want it to be only you forever. And ever since we got together, March 18 2024, my life hasn't been the same, it's like the world shifted in my favor, like every dah suddenly had a purpose, like waking up wasn't just about facing another day but about having you by my side every day even though it's just a text, a glance of you or the slightest eye contact. I became someone that started to learn about how to care and what it truly meant to be cared for, what it felt like to be chosen. You gave me the chance to feel emotions that were just abstract ideas to me before. No one ever made me feel like you do darling. You've made me feel many new things, love, devotion, butterflies, longing, even the kind of pain that comes only because someone is so important to you. And you taught me many new things. We've made many memories that i store like treasure, even the arguments that turned into stronger bonds. Your little smile, laughs, the times when you made me smile and giggle for hours, the way just seeing you across the room could make everything feel lighter, the way hearing your voice soothes my ears, the way seeing you bless my eyes, the way being with you calms my soul 😌✨ the way we both grew into each other's lives so deeply that I can't separate my present from you anymore. You've made me experience the thrill of waiting for a text, the warmth of your support when I'm down, the calmness that settles in my chest when i realize you're mine and I'm yours 🥹✨ I feel so special calling you my wife, i feel so special calling you mine. It gave me a front row seat to wonder that is you, your way of thinking, your dreams, your frustrations, your laughters, all of it has been like chapters of the best book I'll ever read, and i never want that story to end 😼✨ Every day with you feels like a note added to a song that keeps building into something more beautiful, and sometimes i look back and realize how my happiness is wrapped around that name, Samia. You taught me how beautiful it is to love and be loved, and you've given me the comfort of knowing I don't have to go through life alone because you are there (⁠๑⁠♡⁠⌓⁠♡⁠๑⁠)💋🎀✨ Slowly as i think about it all, I can't help but get emotional. All the moments we've spent together, all the moments we fought, all the moments we held each other's hand to go through the hard times of our life. Loving you has made my heart open in ways i never could. And i realized the best part about my life isn't chasing you, it's you, having you by my side. Holding onto your hands feels like holding my dreams, my future, and of course, the beautiful hands of my sweet girl 😉✨ You taught me to dream, you taught me to become ambitious. I can't imagine a future without you in it. You have to stay with me forever darling ☺️💢✨ I love playing minecraft with you, I love watching movies and animes with you, I just love the time we spend together baby. I value our time very much. I love being with you, even if it means we are just sitting in silence. I love talking to you, I love explaining things to you, I love listening to your yap, I love us being silly together, I love walking home with you, I love being under the same umbrella with you honey. I love to help you and i also love how you always help me when i need you. You're kind, patient, loving and very caring. You take care of me in the best way possible. I loved eating pancakes made by you. I love it when you feed me food. I love it when you comfort me when I'm sad, I love it when you send me your pictures and I absolutely love being loved by you >< I always feel safe and comfy when i'm with you. I love giving you headpats baby, you're my good girl, you eat and drink water properly. Sometimes you're a meanie but even that version of you is so cuteeeee. You're perfect baby, in all the ways possible. I love hugging you, it calms my soul. i love holding your hands, it makes me feel safe. You're so beautiful baby. There aren't enough words to capture your beauty. You look heavenly. Everything around me gets silent and blurred when i see you. You look so majestic walking from a distance, approaching me. I dream about you, I dream about us. You look so dreamy. You’re lucky I’m still alive after drowning in your cuteness. I feel so special to be calling you mine. Your beauty pulls me harder than gravity does. The kind of beauty that makes my mind go blank and all i can think of is just you. I also love it how you're so shy and extroverted at the same time. I love it when you prioritize me over others. Your beauty doesn't stop at your face, it's in your actions and gestures too. The way you move, talk, walk, dance, run, the way you tuck your hair behind your hair, the way you fix your glasses, the way you eat, drimk, the curve of your body, everything is just BEAUTIFUL and SO CUTEEEE it makes me go insane for you 😭😭😭😭 Also, your beauty is emotional. Your kindness, your happiness, your sadness, your temper, your chaos, i love every single thing about you. Your beauty isn't loud and attention seeking. It's quiet, effortless and magnetic. 😍💗✨ I love it when your eyes light up when you laugh. I love the way you love. I love the way you smile. And I'd do my best to always keep that smile of yours. I love the way you tease me and flirt with me. You glow, you lighten up everything around you, you lighten up my inner world. I know you go through many struggles and hardships but I want you to know that I'll always be by your side no matter what. You can always rely on me. We'll walk through the steps of life together. 
+So, again, Happy birthday to the most beautiful girl and the best girlfriend in the whole world. Samia, happy birthday to the girl who is my beginning and my always. You are the most beautiful thing I’ve ever known, inside and out. You're the only one who can make me this soft and this strong at the same time. You're my sunshine, my heart, my wife, my everything. And no matter how much time passes, no matter how life changes, I will always be grateful that the universe gave me you. May Allah fill this year for you with happiness and make your struggles less heavy. I want you to know that I'll always love you. It's only me for you. I'll always be by your side. I always pray that you achieve your goals and become a successful woman. I can't wait for us to get married 😭😭😭
+I LOVE YOU SOOO MCUHHHHH HONEYYYYYY ヾ(≧▽≦*)o💗🎀✨ Mwahhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</I>
+    </p>
+  </section>
+</main>
+
+<script>
+  // Create floating hearts background
+  function createFloatingHearts() {
+    const container = document.getElementById('floatingHearts');
+    const hearts = ['💖', '💗', '💓', '💞', '💕', '💘'];
+    
+    for (let i = 0; i < 15; i++) {
+      const heart = document.createElement('div');
+      heart.className = 'heart-bg';
+      heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDelay = Math.random() * 15 + 's';
+      heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+      container.appendChild(heart);
+    }
+  }
+
+  // PASSWORD SYSTEM
+  const passwordInput = document.getElementById('passwordInput');
+  const passwordBoxes = [
+    document.getElementById('box1'),
+    document.getElementById('box2'),
+    document.getElementById('box3'),
+    document.getElementById('box4')
+  ];
+  
+  // Focus the hidden input when clicking on any box
+  passwordBoxes.forEach(box => {
+    box.addEventListener('click', () => {
+      passwordInput.focus();
+    });
+  });
+  
+  // Update boxes based on input
+  passwordInput.addEventListener('input', function() {
+    // Only allow numbers
+    this.value = this.value.replace(/[^0-9]/g, '');
+    
+    const value = this.value;
+    
+    // Update boxes
+    passwordBoxes.forEach((box, index) => {
+      if (index < value.length) {
+        box.textContent = value[index];
+        box.classList.add('filled');
+      } else {
+        box.textContent = '_';
+        box.classList.remove('filled');
+      }
+      
+      // Update active state
+      if (index === value.length) {
+        box.classList.add('active');
+      } else {
+        box.classList.remove('active');
+      }
+    });
+    
+    // Check if password is complete
+    if (value.length === 4) {
+      checkPassword(value);
+    }
+  });
+  
+  // Handle backspace
+  passwordInput.addEventListener('keydown', function(e) {
+    if (e.key === 'Backspace') {
+      // Remove active class from all boxes
+      passwordBoxes.forEach(box => box.classList.remove('active'));
+      
+      // Set the appropriate box as active
+      const activeIndex = Math.max(0, this.value.length - 1);
+      if (this.value.length > 0) {
+        passwordBoxes[activeIndex].classList.add('active');
+      } else {
+        passwordBoxes[0].classList.add('active');
+      }
+    }
+  });
+  
+  function checkPassword(password) {
+    const errorMessage = document.getElementById('errorMessage');
+    
+    if (password === '1492') {
+      errorMessage.textContent = '🎉 Correct! Unlocking your surprise...';
+      startTransition();
+    } else {
+      errorMessage.textContent = 'Mhmm baby, try again';
+      // Clear input and boxes
+      passwordInput.value = '';
+      passwordBoxes.forEach(box => {
+        box.textContent = '_';
+        box.classList.remove('filled', 'active');
+      });
+      passwordBoxes[0].classList.add('active');
+      passwordInput.focus();
+    }
+  }
+
+  // TRANSITION ANIMATION
+  function startTransition() {
+    const intro = document.getElementById('intro');
+    const transitionScreen = document.getElementById('transitionScreen');
+    const birthdayText = document.getElementById('birthdayText');
+    
+    // Fade out intro elements
+    const introElements = intro.querySelectorAll('img, h1, p, .password-container');
+    introElements.forEach(el => {
+      el.style.animation = 'fadeOutElements 0.6s ease forwards';
+    });
+    
+    // Show transition screen
+    setTimeout(() => {
+      transitionScreen.style.display = 'flex';
+      
+      // Animate the birthday text
+      setTimeout(() => {
+        birthdayText.style.animation = 'zoomInText 1.2s ease forwards';
+        
+        // Transition to main page
+        setTimeout(() => {
+          intro.style.display = 'none';
+          transitionScreen.style.display = 'none';
+          document.getElementById('birthdayPage').style.display = 'block';
+          document.body.style.overflow = 'auto';
+          
+          animateMainPage();
+        }, 1200);
+      }, 200);
+    }, 600);
+  }
+
+  // ANIMATE MAIN PAGE ELEMENTS
+  function animateMainPage() {
+    const elements = [
+      document.querySelector('main h1'),
+      document.querySelector('h1 img'),
+      document.querySelector('.lead'),
+      document.querySelector('.vault'),
+      document.querySelector('.gallery'),
+      document.querySelector('.reasons-section'),
+      document.querySelector('#chat-simulator'),
+      document.querySelector('.special-message')
+    ];
+    
+    elements.forEach((el, index) => {
+      if (el) {
+        setTimeout(() => {
+          el.style.opacity = '1';
+          el.style.transform = 'translateY(0)';
+        }, 200 + (index * 150));
+      }
+    });
+  }
+
+  // LETTER TOGGLE
+  function showLetter(num){
+    const letters = document.querySelectorAll('.letter');
+    const target = document.getElementById('letter'+num);
+
+    if(target.classList.contains('show')){
+      target.classList.remove('show');
+    } else {
+      letters.forEach(l => l.classList.remove('show'));
+      target.classList.add('show');
+    }
+  }
+
+  // LIGHTBOX GALLERY
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  document.querySelectorAll('.clickable-photo').forEach(img => {
+    img.addEventListener('click', () => {
+      lightbox.style.display = 'flex';
+      lightboxImg.src = img.src;
+    });
+  });
+  lightbox.addEventListener('click', () => lightbox.style.display = 'none');
+  
+  // Focus password input on page load and set first box as active
+  window.addEventListener('load', function() {
+    createFloatingHearts();
+    passwordInput.focus();
+    passwordBoxes[0].classList.add('active');
+  });
+
+  // CHAT SIMULATOR
+  const chatMessages = document.getElementById('chat-messages');
+  const userInput = document.getElementById('user-input');
+  const typingIndicator = document.getElementById('typing-indicator');
+
+  const replies = [
+    "Happy birthday sweetheart <3",
+    "I hope you like this thing I made for you! If I had more time, I could make it fancier. But I hope you still like it ^^",
+    "Okieee enjoy the website now baby, there's a special message for you below ><"
+  ];
+
+  let replyIndex = 0;
+  let locked = false;
+
+  // Enter key sends message
+  userInput.addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      sendMessage();
+    }
+  });
+
+  function sendMessage() {
+    if (locked) return;
+    const text = userInput.value.trim();
+    if (!text) return;
+
+    addMessage(text, 'sent'); // user message
+    userInput.value = '';
+
+    if (replyIndex < replies.length) {
+      locked = true;
+      setTimeout(() => typingIndicator.style.display = 'block', 500);
+
+      setTimeout(() => {
+        typingIndicator.style.display = 'none';
+        addMessage(replies[replyIndex], 'received'); // automated boyfie message
+        replyIndex++;
+        locked = false;
+      }, 2500);
+    }
+  }
+
+  function addMessage(text, type) {
+    const msg = document.createElement('div');
+    msg.classList.add('message', type);
+    msg.setAttribute('ondblclick', 'toggleHeart(this)');
+    msg.style.padding = '10px 15px';
+    msg.style.maxWidth = '70%';
+    msg.style.borderRadius = type === 'sent' ? '15px 15px 0 15px' : '15px 15px 15px 0';
+    msg.style.backgroundColor = type === 'sent' ? '#f2f2f2' : '#ff7eb9';
+    msg.style.color = type === 'sent' ? 'black' : 'white';
+    msg.style.alignSelf = type === 'sent' ? 'flex-end' : 'flex-start';
+    msg.style.position = 'relative';
+    msg.style.textAlign = type === 'sent' ? 'right' : 'left';
+    msg.innerText = text;
+
+    chatMessages.appendChild(msg);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+
+    // Auto-heart **only for user's messages**
+    if (type === 'sent') {
+      setTimeout(() => addHeart(msg), 400);
+    }
+  }
+
+  function addHeart(el) {
+    if (el.querySelector('.heart')) return;
+    const heart = document.createElement('span');
+    heart.className = 'heart';
+    heart.innerHTML = '❤️';
+    el.appendChild(heart);
+  }
+
+  function toggleHeart(el) {
+    const heart = el.querySelector('.heart');
+    if (heart) {
+      el.removeChild(heart);
+    } else {
+      addHeart(el);
+    }
+  }
+</script>
+
+</body>
+</html>
